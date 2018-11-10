@@ -7,6 +7,7 @@ class CheckoutForm extends Component {
     this.submit = this.submit.bind(this);
     this.state = { message: props.message, style: "#000", amount: 10};
     this.validate = this.validate.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(event){

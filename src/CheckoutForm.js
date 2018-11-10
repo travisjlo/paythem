@@ -18,10 +18,10 @@ class CheckoutForm extends Component {
     // User clicked submit
     this.setState({message:"Gotcha ", style: "#fff"});
     let {token} = await this.props.stripe.createToken({name: "Name"});
-    let response = await fetch("/charge", {
+    let response = await fetch("/charge/" + this.state.amount, {
         method: "POST",
         headers: {"Content-Type": "text/plain"},
-        body: {id:token.id, amount: this.state.amount} 
+        body: token.id 
     });
     if (response.ok) this.setState({complete: true});
     else {this.setState({message: "brah thats not a real card"})};

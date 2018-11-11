@@ -5,7 +5,7 @@ class CheckoutForm extends Component {
   constructor(props) {
     super(props);
     this.submit = this.submit.bind(this);
-    this.state = { message: props.message, style: "#000", amount: 10};
+    this.state = { message: props.message, style: "#fff", amount: 100};
     this.validate = this.validate.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
@@ -16,23 +16,23 @@ class CheckoutForm extends Component {
 
   async submit(ev) {
     // User clicked submit
-    this.setState({message:"Gotcha ", style: "#fff"});
+    this.setState({message:"LOADING", style: "#808080"});
     let {token} = await this.props.stripe.createToken({name: "Name"});
-    let response = await fetch("/charge/" + this.state.amount, {
+    let response = await fetch("/charge/" + this.state.amount + "000", {
         method: "POST",
         headers: {"Content-Type": "text/plain"},
         body: token.id 
     });
     if (response.ok) this.setState({complete: true});
-    else {this.setState({message: "brah thats not a real card"})};
+    else {this.setState({message: "That did not work...Please refresh and try again"})};
   }
 
   render() {
-    if (this.state.complete) return <h1>Purchase Complete</h1>;
+    if (this.state.complete) return <h1 style= {{color: "#008000"}}>Payment Complete <br/>Thank You </h1>;
 
     return (
       <div className="checkout">
-        <p> Click the black button!</p>
+        <p> Enter at least $1 in the box to pay them.</p>
         <CardElement/>
         <input type='text' onKeyPress={this.validate} value={this.state.amount} onChange={this.handleChange}></input>
      

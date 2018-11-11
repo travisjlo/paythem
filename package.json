@@ -5,7 +5,8 @@
   "dependencies": {
     "react": "^16.6.1",
     "react-dom": "^16.6.1",
-    "react-scripts": "2.1.1"
+    "react-scripts": "2.1.1",
+    "react-stripe-elements": "^2.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -21,5 +22,6 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "proxy": "http://35.200.159.95:9000"
 }
